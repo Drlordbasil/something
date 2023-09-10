@@ -7,6 +7,8 @@ from sklearn.metrics import mean_squared_error
 import datetime
 
 # Step 1: Web Scraping - Gather real-time stock data
+
+
 def scrape_stock_data(stock_symbol):
     url = f'https://finance.yahoo.com/quote/{stock_symbol}/history?p={stock_symbol}'
     response = requests.get(url)
@@ -26,18 +28,24 @@ def scrape_stock_data(stock_symbol):
     return df
 
 # Step 2: Preprocess Data
+
+
 def preprocess_data(df):
     df['Date'] = pd.to_datetime(df['Date'])
-    df['Close Price'] = pd.to_numeric(df['Close Price'].str.replace(',', ''), errors='coerce')
+    df['Close Price'] = pd.to_numeric(
+        df['Close Price'].str.replace(',', ''), errors='coerce')
     df = df.dropna()
     return df
 
 # Step 3: Train a Machine Learning model
+
+
 def train_model(df):
     X = df['Date'].astype(int).values.reshape(-1, 1)
     y = df['Close Price'].values.reshape(-1, 1)
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42)
 
     model = LinearRegression()
     model.fit(X_train, y_train)
@@ -51,6 +59,8 @@ def train_model(df):
     return model, mse_train, mse_test
 
 # Step 4: Make Predictions
+
+
 def make_predictions(model, df):
     last_date = df['Date'].iloc[-1]
     next_date = last_date + datetime.timedelta(days=1)
@@ -62,6 +72,7 @@ def make_predictions(model, df):
     prediction = model.predict(next_date_int)
 
     return next_date, prediction
+
 
 # Step 5: Execute the Workflow
 stock_symbol = 'AAPL'  # Replace with your desired stock symbol
