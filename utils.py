@@ -12,10 +12,8 @@ import numpy as np
 def gather_real_time_data(tickers):
     """
     Gather real-time stock market data using the yfinance library.
-
     Parameters:
     - tickers: list of strings, representing the stock tickers
-
     Returns:
     - pandas DataFrame object with the gathered data
     """
@@ -33,10 +31,8 @@ def gather_real_time_data(tickers):
 def preprocess_data(data):
     """
     Preprocess the stock market data.
-
     Parameters:
     - data: pandas DataFrame object with stock market data
-
     Returns:
     - processed_data: numpy array with preprocessed data
     """
@@ -54,11 +50,9 @@ def preprocess_data(data):
 def split_data(processed_data, test_size=0.2):
     """
     Split the preprocessed data into training and testing sets.
-
     Parameters:
     - processed_data: numpy array with preprocessed data
     - test_size: float, representing the proportion of data to use for testing
-
     Returns:
     - X_train: numpy array with training features
     - X_test: numpy array with testing features
@@ -80,11 +74,9 @@ def split_data(processed_data, test_size=0.2):
 def train_model(X_train, y_train):
     """
     Train the machine learning model on the training data.
-
     Parameters:
     - X_train: numpy array with training features
     - y_train: numpy array with training target
-
     Returns:
     - model: trained machine learning model
     """
@@ -99,11 +91,9 @@ def train_model(X_train, y_train):
 def make_predictions(model, X_test):
     """
     Make predictions using the trained model and testing data.
-
     Parameters:
     - model: trained machine learning model
     - X_test: numpy array with testing features
-
     Returns:
     - y_pred: numpy array with predicted values
     """
@@ -117,7 +107,6 @@ def make_predictions(model, X_test):
 def evaluate_model(y_test, y_pred):
     """
     Evaluate the trained model using mean squared error.
-
     Parameters:
     - y_test: numpy array with testing target
     - y_pred: numpy array with predicted values
